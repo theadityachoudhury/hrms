@@ -1,21 +1,7 @@
 <?php
 define('TITLE', 'Signup');
 include '../assets/layouts/navbar.php';
-if(check_logged_in()){
-    if (isset($_SESSION)) {
-        if($_SESSION["auth"]!="verified"){
-            header("Location: ../");
-        }
-        else{
-            if($_SESSION["level"]!=0){
-                header("Location: ../dashboard");
-            }
-        }
-    }
-    else {
-        header("Location: ../");
-    }
-}
+check_logged_out();
 $prepass = bin2hex(random_bytes(6));
 ?>
 

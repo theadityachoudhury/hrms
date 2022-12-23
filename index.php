@@ -10,3 +10,4 @@ else {
     header("Location: login");
     exit();
 }
+?>

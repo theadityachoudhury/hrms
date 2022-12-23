@@ -135,6 +135,10 @@ else {
                     $_SESSION['updated_at'] = $row['updated_at'];
                     $_SESSION['deleted_at'] = $row['deleted_at'];
                     $_SESSION['last_login_at'] = $row['last_login_at'];
+                    $_SESSION['instagram'] = $row['instagram'];
+                    $_SESSION['facebook'] = $row['facebook'];
+                    $_SESSION['department'] = $row['department'];
+
 
 
                     /*

@@ -1,6 +1,6 @@
 <?php
 define('TITLE',"HRMS Login");
-include '../assets/layouts/header.php';
+include '../assets/layouts/navbar.php';
 check_logged_out();
 ?>
 
@@ -19,7 +19,7 @@ check_logged_out();
                     <img class="mb-1" src="../assets/images/logo.png" alt="" width="130" height="130">
                 </div>
 
-                <h6 class="h3 mb-3 font-weight-normal text-muted text-center">Login to your Account</h6>
+                <h6 class="h3 mb-5 font-weight-normal text-muted text-center">Login to your Account</h6>
 
                 <div class="text-center mb-3">
                     <small class="text-success font-weight-bold">
@@ -31,9 +31,9 @@ check_logged_out();
                     </small>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group mb-3">
                     <label for="username" class="sr-only">Username</label>
-                    <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
+                    <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus autocomplete="off">
                     <sub class="text-danger">
                         <?php
                             if (isset($_SESSION['ERRORS']['nouser']))
@@ -42,7 +42,7 @@ check_logged_out();
                     </sub>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group mb-3">
                     <label for="password" class="sr-only">Password</label>
                     <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
                     <sub class="text-danger">
@@ -53,15 +53,17 @@ check_logged_out();
                     </sub>
                 </div>
 
-                <div class="col-auto my-1 mb-4">
-                    <div class="custom-control custom-checkbox mr-sm-2">
-                        <input type="checkbox" class="custom-control-input" id="rememberme" name="rememberme">
-                        <label class="custom-control-label" for="rememberme">Remember Me</label>
+                <div class="ml-4 my-1 mb-4">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="rememberme" id="rememberme">
+                        <label class="form-check-label" for="rememberme">
+                            Remember Me
+                        </label>
                     </div>
                 </div>
-
+                <div class="d-grid gap-2">
                 <button class="btn btn-lg btn-primary btn-block" type="submit" value="loginsubmit" name="loginsubmit">Login</button>
-
+                </div>
                 <p class="mt-3 text-muted text-center"><a href="../reset-password/">Forgot Password?</a></p>
                 
             </form>

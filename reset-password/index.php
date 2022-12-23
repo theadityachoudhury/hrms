@@ -1,7 +1,7 @@
 <?php
 
 define('TITLE', "Login");
-include '../assets/layouts/header.php';
+include '../assets/layouts/navbar.php';
 check_logged_out();
 
 ?>

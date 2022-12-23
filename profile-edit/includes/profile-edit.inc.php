@@ -46,6 +46,22 @@ if (isset($_POST['update-profile'])) {
     $email = $_POST['email'];
     $first_name = $_POST['first_name'];
     $last_name = $_POST['last_name'];
+    if(isset($_POST['facebook'])){
+        $facebook = $_POST['facebook'];
+        $facebook = trim($facebook,'https://www.');
+        $facebook = trim($facebook,"facebook.com/");
+        $facebook = explode('/',$facebook);
+        $facebook = $facebook[0];
+    }
+    else $facebook = NULL;
+    if(isset($_POST['instagram'])){
+        $instagam = $_POST['instagram'];
+        $instagam = trim($instagam,'https://www.');
+        $instagam = trim($instagam,"instagram.com");
+        $instagam = explode('/',$instagam);
+        $instagam = $instagam[0];
+    }
+    else $instagam = NULL;
 
     if (isset($_POST['gender'])) 
         $gender = $_POST['gender'];
@@ -157,11 +173,13 @@ if (isset($_POST['update-profile'])) {
             first_name=?, 
             last_name=?, 
             gender=?, 
-            profile_image=?";
+            profile_image=?,
+            instagram=?,
+            facebook=?";
 
         if (isset($passwordUpdated)){
 
-            $sql .= ", password=? 
+            $sql .= ", password=?
                     WHERE id=?;";
         }
         else{
@@ -182,26 +200,30 @@ if (isset($_POST['update-profile'])) {
             if (isset($passwordUpdated)){
 
                 $hashedPwd = password_hash($newpassword, PASSWORD_DEFAULT);
-                mysqli_stmt_bind_param($stmt, "ssssssss", 
+                mysqli_stmt_bind_param($stmt, "ssssssssss", 
                     $username,
                     $email,
                     $first_name,
                     $last_name,
                     $gender,
                     $FileNameNew,
+                    $instagam,
+                    $facebook,
                     $hashedPwd,
                     $_SESSION['id']
                 );
             }
             else{
 
-                mysqli_stmt_bind_param($stmt, "sssssss", 
+                mysqli_stmt_bind_param($stmt, "sssssssss", 
                     $username,
                     $email,
                     $first_name,
                     $last_name,
                     $gender,
                     $FileNameNew,
+                    $instagam,
+                    $facebook,
                     $_SESSION['id']
                 );
             }
@@ -216,6 +238,10 @@ if (isset($_POST['update-profile'])) {
             $_SESSION['last_name'] = $last_name;
             $_SESSION['gender'] = $gender;
             $_SESSION['profile_image'] = $FileNameNew;
+            // if($_SESSION['instagram']==NULL) unset($_SESSION['instagram']);
+            $_SESSION['instagram'] = $instagam;
+            // if($_SESSION['facebook']==NULL) unset($_SESSION['facebook']);
+            $_SESSION['facebook'] = $facebook;
 
             $_SESSION['STATUS']['editstatus'] = 'profile successfully updated';
             header("Location: ../");

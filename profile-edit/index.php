@@ -1,7 +1,7 @@
 <?php
 
 define('TITLE', "Edit Profile");
-include '../assets/layouts/header.php';
+include '../assets/layouts/navbar.php';
 check_verified();
 
 //XSS filter for session variables
@@ -21,28 +21,6 @@ function xss_filter($data) {
             <form class="form-auth" action="includes/profile-edit.inc.php" method="post" enctype="multipart/form-data" autocomplete="off">
 
                 <?php insert_csrf_token(); ?>
-
-                <div class="picCard text-center">
-                    <div class="avatar-upload">
-                        <div class="avatar-preview text-center">
-                            <div id="imagePreview" style="background-image: url( ../assets/uploads/users/<?php echo $_SESSION['profile_image'] ?> );">
-                            </div>
-                        </div>
-                        <div class="avatar-edit">
-                            <input name='avatar' id="avatar" class="fas fa-pencil" type='file' />
-                            <label for="avatar"></label>
-                        </div>
-                    </div>
-                </div>
-                <div class="text-center">
-                    <sub class="text-danger">
-                        <?php
-                            if (isset($_SESSION['ERRORS']['imageerror']))
-                                echo $_SESSION['ERRORS']['imageerror'];
-
-                        ?>
-                    </sub>
-                </div>
                 <div class="text-center">
                     <small class="text-success font-weight-bold">
                         <?php
@@ -57,7 +35,7 @@ function xss_filter($data) {
 
                 <div class="form-group">
                     <label for="username">Username</label>
-                    <input type="text" id="username" name="username" class="form-control" placeholder="Username" value="<?php echo xss_filter($_SESSION['username']); ?>" autocomplete="off">
+                    <input type="text" id="username" name="username" class="form-control" placeholder="Username" value="<?php echo xss_filter($_SESSION['username']); ?>" autocomplete="off" readonly>
                     <sub class="text-danger">
                         <?php
                             if (isset($_SESSION['ERRORS']['usernameerror']))
@@ -99,7 +77,7 @@ function xss_filter($data) {
                         else if(xss_filter($_SESSION['level'])==0)
                         echo "Employee";
                     
-                    ?>">
+                    ?>" readonly>
                 </div>
 
                 <div class="form-group mb-5">
@@ -112,6 +90,16 @@ function xss_filter($data) {
                         <input type="radio" id="female" name="gender" class="custom-control-input" value="f" <?php if ($_SESSION['gender'] == 'f') echo 'checked' ?>>
                         <label class="custom-control-label" for="female">Female</label>
                     </div>
+                </div>
+                <hr>
+                <span class="h5 font-weight-normal text-muted mb-4">Social Media Section</span>
+                <div class="form-group mt-2">
+                    <input type="text" id="facebook" name="facebook" class="form-control" placeholder="Facebook Link" 
+                    value="<?php if(isset($_SESSION['facebook'])){echo "https://www.facebook.com/";echo xss_filter($_SESSION['facebook']);}?>">
+                </div>
+                <div class="form-group mt-2">
+                    <input type="text" id="instagram" name="instagram" class="form-control mb-5" placeholder="Instagram Link" 
+                    value="<?php if(isset($_SESSION['instagram'])){echo "https://instagram.com/";echo xss_filter($_SESSION['instagram']);}?>">
                 </div>
                 <hr>
                     <span class="h5 font-weight-normal text-muted mb-4">Password Edit</span>

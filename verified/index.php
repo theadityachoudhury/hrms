@@ -1,7 +1,7 @@
 <?php
 
 define('TITLE', 'Verify Email');
-include '../assets/layouts/header.php';
+include '../assets/layouts/navbar.php';
 check_verified();
 ?>
 
