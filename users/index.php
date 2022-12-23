@@ -21,6 +21,22 @@ if($_SESSION['level']==2){
                     </div>
                     <div class="card-body">
 
+                    <div class="card-body">
+                        <form action="" method="post">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="filter_value" class="form-control" placeholder="Search" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <button type="submit" name="filter_btn" class="btn btn-primary">Search</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+
                         <table class="table table-bordered table-striped">
                             <thead>
                                 <tr>
@@ -36,14 +52,27 @@ if($_SESSION['level']==2){
                             <tbody>
                                 <?php 
                                 if($_SESSION['level']==0){
+                                    if(isset($_POST['filter_btn'])){
+                                        foreach($_POST as $key => $value){
+                                            $_POST[$key] = _cleaninjections(trim($value));
+                                        }
+                                        $value_filter = $_POST['filter_value'];
+                                        $sql = "SELECT * FROM users WHERE concat(id,username,email,first_name,last_name) LIKE '%$value_filter%'";
+                                    }
+                                    else{
                                     $sql = 'SELECT * FROM users';
-                                    $results = mysqli_query($conn,$sql);
+                                    }
                                 }
                                 else{
-                                    $sql = 'SELECT * FROM users WHERE department=\''.$_SESSION['department'].'\';';
-                                    $results = mysqli_query($conn,$sql);
+                                    if(isset($_POST['filter_btn'])){
+                                        $value_filter = $_POST['filter_value'];
+                                        $department = $_SESSION['department'];
+                                        $sql = "SELECT * FROM users WHERE department='$department' && concat(id,username,email,first_name,last_name) LIKE '%$value_filter%'";
+                                    }else{
+                                        $sql = "SELECT * FROM users WHERE department='$department';";
+                                    }
                                 }
-
+                                $results = mysqli_query($conn,$sql);
 
                                     if(mysqli_num_rows($results) > 0)
                                     {

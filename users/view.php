@@ -140,8 +140,32 @@ if($_SESSION['level']==2){
                         <input type="text" id="instagram" name="instagram" class="form-control mb-5" placeholder="Instagram Link" 
                         value="<?php if(isset($employee['instagram'])){echo "https://instagram.com/";echo $employee['instagram'];}?>">
                     </div>
-                    <button class="btn btn-lg btn-primary btn-block mb-5" type="submit" name='update-profile'>Confirm Changes</button>
+                    
+                <?php }?>
+                <?php if($_SESSION['level']==0){?>
+
+                    <div class="form-group mb-3">
+                    <div class="mb-1"><label for="last_name">Created At</label></div>
+                        <input type="text" id="created-at" name="created-at" class="form-control" placeholder="Created At" value="<?php echo $employee['created_at']; ?>" readonly>
+                    </div>
+
+                    <div class="form-group mb-3">
+                    <div class="mb-1"><label for="last_name">Verified At</label></div>
+                        <input type="text" id="verified-at" name="verified-at" class="form-control" placeholder="Verified At" value="<?php echo $employee['verified_at']; ?>" readonly>
+                    </div>
+
+                    <div class="form-group mb-3">
+                    <div class="mb-1"><label for="last-login">Last Login At</label></div>
+                        <input type="text" id="last-login" name="last-login" class="form-control" placeholder="Last Login" value="<?php echo $employee['last_login_at']; ?>" readonly>
+                    </div>
+
+                    <div class="form-group mb-3">
+                    <div class="mb-1"><label for="deleted_at">Deleted At</label></div>
+                        <input type="text" id="deleted_at" name="deleted_at" class="form-control" placeholder="Deleted At" value="<?php echo $employee['deleted_at']; ?>" readonly>
+                    </div>
+
                 <?php }}?>
+                <button class="btn btn-lg btn-primary btn-block mb-5" type="submit" name='update-profile'>Confirm Changes</button>
                 
             </form>
 
