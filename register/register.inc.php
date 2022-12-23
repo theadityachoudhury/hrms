@@ -13,12 +13,12 @@ if(check_logged_in()){
         }
         else{
             if($_SESSION["level"]!=0){
-                header("Location: ../home");
+                header("Location: ../dashboard");
             }
         }
     }
     else {
-        header("Location: ../jjkk");
+        header("Location: ../");
     }
 }
 
