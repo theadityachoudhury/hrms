@@ -1,5 +1,5 @@
 <?php
-define('TITLE', 'Signup');
+define('TITLE', 'Register User');
 include '../assets/layouts/navbar.php';
 if(check_logged_in()){
     if (isset($_SESSION)) {
@@ -82,20 +82,15 @@ $prepass = bin2hex(random_bytes(6));
 
                 <div class="form-group mb-3">
                     <select for="department" id="department" name="department" class="form-select form-control" aria-label="Default select example" required>
-                        <option>Select Department</option>
-                        <optgroup label="For Super Admins Only">
-                            <option value="all">Admin Account/Maintainer</option>
-                        </optgroup>
-                        <optgroup label="Engineering">
-                            <option value="cse">Computer Science</option>
-                            <option value="electrical">Electrical</option>
-                            <option value="mech">Mechanical</option>
-                            <option value="civil">Civil</option>
-                        </optgroup>
-                        <optgroup label="Medical">
-                            <option value="bds">Dental</option>
-                            <option value="mbbs">KIMS</option>
-                        </optgroup>
+                    <option value="">Select Department</option>
+                        <?php
+                            $sql = 'SELECT * FROM department';
+                            $results = mysqli_query($conn,$sql);
+                            if(mysqli_num_rows($results) > 0){
+                                foreach($results as $department){
+                        ?>
+                            <option value="<?php echo $department['id']?>"><?php echo $department['dep_name']?></option>
+                            <?php }}?>
                     </select>
                 </div>
                 <hr>
