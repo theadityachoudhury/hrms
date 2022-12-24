@@ -1,6 +1,6 @@
 <?php
 
-define('TITLE', "Login");
+define('TITLE', "Reset Password");
 include '../assets/layouts/navbar.php';
 check_logged_out();
 

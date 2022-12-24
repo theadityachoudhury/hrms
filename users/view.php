@@ -1,5 +1,5 @@
 <?php
-define('TITLE', "Tasks");
+define('TITLE', "View User");
 include '../assets/layouts/navbar.php';
 check_verified();
 if($_SESSION['level']==2){

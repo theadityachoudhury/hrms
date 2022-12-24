@@ -36,6 +36,15 @@ require 'header.php';
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Departments
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="<?php echo APP_LINK?>/departments">Manage Departments</a></li>
+            <li><a class="dropdown-item" href="<?php echo APP_LINK?>/departments/add">Add Departments</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Profile Section
           </a>
           <ul class="dropdown-menu">
