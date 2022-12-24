@@ -2,10 +2,10 @@
 
 session_start();
 
-require '../assets/setup/env.php';
-require '../assets/setup/db.inc.php';
-require '../assets/includes/auth_functions.php';
-require '../assets/includes/security_functions.php';
+require $_SERVER['DOCUMENT_ROOT'].'/assets/setup/env.php';
+require $_SERVER['DOCUMENT_ROOT'].'/assets/setup/db.inc.php';
+require $_SERVER['DOCUMENT_ROOT'].'/assets/includes/auth_functions.php';
+require $_SERVER['DOCUMENT_ROOT'].'/assets/includes/security_functions.php';
 
 if (isset($_SESSION['auth']))
     $_SESSION['expire'] = ALLOWED_INACTIVITY_TIME;

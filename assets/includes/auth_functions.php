@@ -139,7 +139,7 @@ function check_verified() {
 //loggin in and making the user verified
 function force_login($email) {
 
-    require '../assets/setup/db.inc.php';
+    require $_SERVER['DOCUMENT_ROOT'].'/assets/setup/db.inc.php';
     
     $sql = "SELECT * FROM users WHERE email=?;";
     $stmt = mysqli_stmt_init($conn);
@@ -191,7 +191,7 @@ function force_login($email) {
 
 function check_remember_me() {
 
-    require '../assets/setup/db.inc.php';
+    require $_SERVER['DOCUMENT_ROOT'].'/assets/setup/db.inc.php';
     
     if (empty($_SESSION['auth']) && !empty($_COOKIE['rememberme'])) {
         
