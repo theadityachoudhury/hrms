@@ -14,7 +14,7 @@ include '../assets/layouts/navbar.php';
         </div>
         <div class="col-sm-9 px-5">
 
-            <form class="form-auth" action="includes/contact.inc.php" method="post">
+            <form class="form-auth" action="<?php echo APP_LINK?>/includes/contact.inc.php" method="post">
 
                 <?php insert_csrf_token(); ?>
 

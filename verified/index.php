@@ -1,6 +1,6 @@
 <?php
 
-define('TITLE', 'Verify Email');
+define('TITLE', 'Verified Account');
 include '../assets/layouts/navbar.php';
 check_verified();
 ?>

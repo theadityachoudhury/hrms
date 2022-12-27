@@ -1,6 +1,7 @@
 <?php
 
 if (!defined('APP_NAME'))                       define('APP_NAME', 'KIIT HRMS');
+if (!defined('APP_LINK'))                       define('APP_LINK', 'http://localhost');
 if (!defined('APP_ORGANIZATION'))               define('APP_ORGANIZATION', 'KIIT');
 if (!defined('APP_OWNER'))                      define('APP_OWNER', 'adityasubham03');
 if (!defined('APP_DESCRIPTION'))                define('APP_DESCRIPTION', 'KIIT HRMS');
