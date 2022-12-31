@@ -147,19 +147,11 @@ if (isset($_POST['signupsubmit'])) {
             *   Sending Verification Email for Account Activation
             * -------------------------------------------------------------------------------
             */
-            $sql = 'SELECT * FROM department WHERE id=?';
+
+            $sql = "UPDATE department SET count=count+1 WHERE id=?";
             $stmt = mysqli_stmt_init($conn);
             mysqli_stmt_prepare($stmt, $sql);
             mysqli_stmt_bind_param($stmt,"s",$department);
-            mysqli_stmt_execute($stmt);
-            $result=mysqli_stmt_get_result($stmt);
-            $result=mysqli_fetch_array($result);
-            $count = $result['count']+1;
-
-            $sql = "UPDATE department SET count=? WHERE id=?";
-            $stmt = mysqli_stmt_init($conn);
-            mysqli_stmt_prepare($stmt, $sql);
-            mysqli_stmt_bind_param($stmt,"ss",$count,$department);
             mysqli_stmt_execute($stmt);
             
             require 'verification.inc.php';
