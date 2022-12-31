@@ -36,8 +36,17 @@ if($_SESSION['level']==2){
                         </form>
 
                     </div>
+                    <div class="text-center mb-3">
+                        <?php if (isset($_SESSION['STATUS']['deletestatus'])) { ?>
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong><?php echo $_SESSION['STATUS']['deletestatus'] ?></strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        <?php } ?>
+                </div>
 
                         <table class="table table-bordered table-striped">
+                        
                             <thead>
                                 <tr>
                                     <th>Username</th>
@@ -69,6 +78,7 @@ if($_SESSION['level']==2){
                                         $department = $_SESSION['department'];
                                         $sql = "SELECT * FROM users WHERE department='$department' && concat(id,username,email,first_name,last_name) LIKE '%$value_filter%'";
                                     }else{
+                                        $department = $_SESSION['department'];
                                         $sql = "SELECT * FROM users WHERE department='$department';";
                                     }
                                 }
@@ -108,9 +118,9 @@ if($_SESSION['level']==2){
                                                 <?php } ?>
                                                     <form action="delete.php" method="POST" class="d-inline">
                                                     <?php if($employee['id']!=$_SESSION['id'] && !isset($employee['deleted_at'])){?>
-                                                        <button type="submit" name="delete_student" value="<?=$employee['id'];?>" class="btn btn-danger btn-sm">Delete</button>
+                                                        <button type="submit" name="delete" value="<?=$employee['id'];?>" class="btn btn-danger btn-sm">Delete</button>
                                                     <?php } else{?>
-                                                        <button type="submit" name="delete_student" value="<?=$employee['id'];?>" class="btn btn-danger btn-sm" disabled>Delete</button>
+                                                        <button type="submit" name="delete" value="" class="btn btn-danger btn-sm" disabled>Delete</button>
                                                     <?php } ?>
                                                     </form>
                                                 </td>

@@ -142,7 +142,7 @@ if($_SESSION['level']==2){
                     </div>
                     
                 <?php }?>
-                <?php if($_SESSION['level']==0){?>
+                <?php if($_SESSION['level']==0 && mysqli_num_rows($query_run) > 0){?>
 
                     <div class="form-group mb-3">
                     <div class="mb-1"><label for="last_name">Created At</label></div>
@@ -164,8 +164,10 @@ if($_SESSION['level']==2){
                         <input type="text" id="deleted_at" name="deleted_at" class="form-control" placeholder="Deleted At" value="<?php echo $employee['deleted_at']; ?>" readonly>
                     </div>
 
-                <?php }}?>
+                <?php }?>
+                <?php if(mysqli_num_rows($query_run) > 0){?>
                 <button class="btn btn-lg btn-primary btn-block mb-5" type="submit" name='update-profile'>Confirm Changes</button>
+                <?php }} ?>
                 
             </form>
 
@@ -177,14 +179,13 @@ if($_SESSION['level']==2){
 </div>
 
 <?php 
-if(isset($_GET['id'])){
+if(isset($_GET['id']) && mysqli_num_rows($query_run) > 0){
 $_SESSION['eid'] = $employee['id'];
 $_SESSION['eusername'] = $employee['username'];
 $_SESSION['eemail'] = $employee['email'];
 $_SESSION['efirst_name'] = $employee['first_name'];
 $_SESSION['elast_name'] = $employee['last_name'];
 $_SESSION['egender'] = $employee['gender'];
-$_SESSION['eprofile_image'] = $employee['profile_image'];
 $_SESSION['elevel'] = $employee['level'];
 $_SESSION['everified_at'] = $employee['verified_at'];
 $_SESSION['ecreated_at'] = $employee['created_at'];
