@@ -1,19 +1,17 @@
 <?php
 define('TITLE', 'Register User');
 include '../assets/layouts/navbar.php';
-if(check_logged_in()){
-    if (isset($_SESSION)) {
-        if($_SESSION["auth"]!="verified"){
-            header("Location: ../");
-        }
-        else{
-            if($_SESSION["level"]!=0){
-                header("Location: ../dashboard");
-            }
-        }
-    }
-    else {
+if (check_logged_in()) {
+    if (!isset($_SESSION)) {
         header("Location: ../");
+    }
+    
+    if ($_SESSION["auth"]!="verified") {
+        header("Location: ../");
+    }
+    
+    if ($_SESSION["level"]!=0) {
+        header("Location: ../dashboard");
     }
 }
 $prepass = bin2hex(random_bytes(6));
